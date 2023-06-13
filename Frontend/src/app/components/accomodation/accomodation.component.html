@@ -1,0 +1,47 @@
+<p>Dodaj smještaj!</p>
+<div class="container">
+<form [formGroup]="accomodation" (ngSubmit)="OnSubmit()">
+
+  <mat-form-field appearance="outline">
+    <mat-label>Naziv</mat-label>
+    <input matInput formControlName="name">
+    <mat-error *ngIf="accomodation.get('name')!.hasError('required')">Name is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Broj soba</mat-label>
+    <input matInput formControlName="numberOfRooms" type="number">
+    <mat-error *ngIf="accomodation.get('numberOfRooms')!.hasError('required')">Price is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Cijena sobe</mat-label>
+    <input matInput formControlName="price" type="number">
+    <mat-error *ngIf="accomodation.get('price')!.hasError('required')">Price is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Destinacija</mat-label>
+    <mat-select formControlName="destinationID">
+      <mat-option *ngFor="let destination of destination | async" [value]="destination.destinationID">
+        {{ destination.name }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="accomodation.get('destinationID')!.hasError('required')">City is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Grad</mat-label>
+    <mat-select formControlName="cityID">
+      <mat-option *ngFor="let city of city | async" [value]="city.cityID">
+        {{ city.cityName }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="accomodation.get('cityID')!.hasError('required')">City is required</mat-error>
+  </mat-form-field>
+  <!-- <mat-checkbox formControlName="pass">Propusnica</mat-checkbox> -->
+  <input type="file" (change)="AddImages($event)" multiple>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="accomodation.invalid">Sačuvaj</button>
+</form>
+</div>

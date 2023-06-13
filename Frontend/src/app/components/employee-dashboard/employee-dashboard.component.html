@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="info">
+        <div class="img">
+            <img src={{imgURL}} alt="">
+        </div>
+        <h3>{{name}}</h3>
+        <p>{{role}}</p>
+        <i class="material-icons" icon="logout" (click)="logOut()">logout</i>
+    </div>
+    <div class="content">
+        <button class="btn" (click)="openPopup(functionality[0])">Kreiraj rezervaciju</button>
+        <button class="btn" (click)="openPopup(functionality[1])">Dodaj korisnika</button>
+        <button class="btn" (click)="openPopup(functionality[2])">Kreiraj ponudu</button>
+        <button class="btn" (click)="openPopup(functionality[3])">Izvještaj</button>
+        <app-employee-popup [showPopup]="showPopup" [function]="func" (closePopup)="onClosePopup()"></app-employee-popup>
+    </div>
+</div>

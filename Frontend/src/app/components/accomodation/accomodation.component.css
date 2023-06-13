@@ -1,0 +1,40 @@
+p {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+
+}
+
+mat-form-field {
+  margin-bottom: 20px;
+}
+
+mat-label {
+  color: #555555;
+}
+
+mat-error {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+button {
+  margin-top: 20px;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container form {
+  width: 400px;
+}

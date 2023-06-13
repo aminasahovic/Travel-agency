@@ -1,0 +1,32 @@
+.main {
+  width: 100%;
+  height: 100%;
+}
+
+.image-div {
+  width: 100%;
+  margin-top: -164px;
+  height: 850px;
+  background-image: url("../assets/Images/homepage-img.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.searchDiv{
+  margin-top: 200px;
+}
+h1{
+  color: rgba(255, 255, 255, 0.751);
+  font-weight: bold;
+  font-size: 3rem;
+}
+/*input*/
+.example-full-width{
+  margin-top: 30px;
+  width: 100%;
+  
+}

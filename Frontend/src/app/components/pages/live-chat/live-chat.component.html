@@ -1,0 +1,10 @@
+<app-nav></app-nav>
+<div class="chat-container">
+    <div class="chat-messages">
+       <div *ngFor="let message of s.messages" class="message">{{ message }}</div>
+    </div>
+    <div class="chat-input">
+        <input type="text" [(ngModel)]="s.message" (keydown.enter)="s.sendMessage()" placeholder="Unesite poruku" />
+        <button (click)="s.sendMessage()">Pošalji</button>
+    </div>
+</div>

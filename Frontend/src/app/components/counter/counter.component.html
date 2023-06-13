@@ -1,0 +1,13 @@
+<p>counter works!</p>
+<div class="container">
+    <form [formGroup]="counter" (ngSubmit)="OnSubmit()">
+
+        <mat-form-field appearance="outline">
+            <mat-label>Naziv</mat-label>
+            <input matInput formControlName="name">
+            <mat-error *ngIf="counter.get('name')!.hasError('required')">Name is required</mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit" [disabled]="counter.invalid">Sačuvaj</button>
+
+    </form>
+</div>

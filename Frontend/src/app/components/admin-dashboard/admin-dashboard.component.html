@@ -1,0 +1,31 @@
+<mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" [opened]="true">
+        <div class="user-info">
+            <!-- <mat-icon>account_circle</mat-icon> -->
+            <div class="icon" style="background-image: url({{imgURL}});"></div>
+            <span>{{ fullName }}</span>
+        </div>
+        <mat-list>
+            <mat-list-item *ngFor="let link of links" (click)="onLinkClick(link)">
+                <mat-icon>{{ link.icon }}</mat-icon>
+                <div class="heading">
+                    <span >{{ link.label }}</span>
+
+                </div>
+            </mat-list-item>
+        </mat-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <router-outlet *ngIf="!currentComponent"></router-outlet>
+        <div *ngIf="currentComponent">
+            <ng-container *ngComponentOutlet="currentComponent"></ng-container>
+        </div>
+
+    </mat-sidenav-content>
+
+
+    <mat-dialog-content>
+        
+    </mat-dialog-content>
+    <h1>Test etst stst</h1>

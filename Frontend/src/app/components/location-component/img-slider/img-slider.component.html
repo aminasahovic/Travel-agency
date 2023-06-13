@@ -1,0 +1,9 @@
+<div>
+  <div class="slider">
+    <button class="prev-button" (click)="previousSlide()">&#10094;</button>
+    <div class="img">
+      <img [src]="getImg(images[slideIndex].imageByteArray)" alt="Accommodation Image">
+    </div>
+    <button class="next-button" (click)="nextSlide()">&#10095;</button>
+  </div>
+</div>

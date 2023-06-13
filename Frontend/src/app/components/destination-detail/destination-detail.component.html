@@ -1,0 +1,79 @@
+<div [ngClass]="{'popup-background1': anonimo===false, 'popup-background': anonimo===true}" *ngIf="showDetail">
+    <div class="popup">
+        <div class="popup-header">
+            <h2>Uredi destinaciju: {{popupData.name}} </h2>
+            <button (click)="onClosePopup()">X</button>
+        </div>
+        <div class="popup-content">
+            <div class="img">
+                <img src={{popupData.img}} alt="">
+            </div>
+            <div class="basic-info">
+                <h4>Prosječna ocjena:{{popupData.rate}}</h4>
+                <div class="price">
+                    <h4>Cijena:{{popupData.price}}</h4>
+                </div>
+            </div>
+            <div class="describe">
+                <h3>Opšte informacije o putovanju</h3>
+                <h4>{{popupData.describe}}</h4>
+            </div>
+            <hr class="hr-line">
+            <div class="resrvation">
+                <h2 *ngIf="anonimo!=true">Rezervacija</h2>
+                <button (click)="OpenSignIn()" *ngIf="anonimo===true" mat-raised-button color="primary"
+                    type="">Rezerviši</button>
+            </div>
+
+            <form *ngIf="anonimo!=true" [formGroup]="reservationForm">
+                <mat-form-field appearance="outline">
+                    <mat-label>Broj osoba</mat-label>
+                    <input matInput formControlName="numberOfPerson" type="number">
+                    <!-- <mat-error *ngIf="form.get('price').hasError('required')">Price is required</mat-error> -->
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Prevoz</mat-label>
+                    <mat-select formControlName="trnsportID">
+                        <mat-option *ngFor="let tarsnport of tarsnports$ | async"
+                            [value]="tarsnport.transportationId">{{ tarsnport.name }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Smjestaj</mat-label>
+                    <mat-select formControlName="accomodationID">
+                        <mat-option *ngFor="let accommodation of accommodations"
+                            [value]="accommodation.accommodationID">{{ accommodation.name }} <button class="button"
+                                (click)="openPopup(accommodation)" value="Pogledaj">Pogledaj više</button></mat-option>
+                    </mat-select>
+
+                </mat-form-field>
+                <app-location-popup [isOpen]="showPopup" [accommodationId]="selectedAccommodationId"
+                    (isOpenChange)="onClosePopup2()"></app-location-popup>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Datum odlaska</mat-label>
+                        <input formControlName="departureTime" matInput [matDatepicker]="departurePicker">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="departurePicker"></mat-datepicker-toggle>
+                        <mat-datepicker #departurePicker></mat-datepicker>
+                        <!-- <mat-error
+                                *ngIf="signUpForm.controls['birthDate'].dirty && signUpForm.hasError('required','birthDate')">
+                                *Unos datuma rodjenja je obavezan
+                            </mat-error> -->
+                      </mat-form-field>
+                      <mat-form-field appearance="fill">
+                        <mat-label>Datum dolaska</mat-label>
+                        <input formControlName="arrivalTime" matInput [matDatepicker]="arrivalPicker">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="arrivalPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #arrivalPicker></mat-datepicker>
+                        <!-- <mat-error
+                              *ngIf="signUpForm.controls['birthDate'].dirty && signUpForm.hasError('required','birthDate')">
+                              *Unos datuma rodjenja je obavezan
+                          </mat-error> -->
+                      </mat-form-field>
+                <button (click)="submit()" mat-raised-button color="primary" type=""
+                    [disabled]="reservationForm.invalid">Rezerviši</button>
+            </form>
+        </div>
+    </div>
+</div>

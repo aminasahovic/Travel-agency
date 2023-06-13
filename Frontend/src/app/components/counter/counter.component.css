@@ -1,0 +1,36 @@
+.container {
+    background-color: #b8d69837;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+  }
+  
+  .container p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    
+  }
+  
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  mat-label {
+    color: #333333b3;
+  }
+  
+  mat-error {
+    color: rgba(255, 0, 0, 0.829);
+    font-size: 12px;
+  }
+  
+  button {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+  }
+  

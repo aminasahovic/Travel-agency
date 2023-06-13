@@ -1,0 +1,62 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #7eb4458d;
+    padding: 16px;
+  }
+  
+  .user-info {
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    display:contents;
+  }
+  
+  .navbar-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  
+  .navbar-list li {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 16px;
+    color: black;
+  }
+  
+  .material-icons {
+    margin-right: 4px;
+  }
+  
+  .link-label {
+    font-size: 14px;
+    color: #fff;
+  }
+  
+  .content {
+    padding: 16px;
+  }
+  
+  .icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    color: #fff;
+    background-size: cover;
+  }
+
+  .icon span {
+    margin-left: 30px; /* Add margin-left for the desired spacing */
+  }
+
+  span.link-label{
+    color: black;
+  }
+  /* Other styles remain the same */
+  

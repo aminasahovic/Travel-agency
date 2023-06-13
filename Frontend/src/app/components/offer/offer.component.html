@@ -1,0 +1,31 @@
+<div class="search">
+    <mat-form-field appearance="outline">
+        <mat-label>Naziv ponude</mat-label>
+        <input matInput [(ngModel)]="nazivPonude"  (ngModelChange)="filterDestinations()">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Grad</mat-label>
+        <mat-select [(ngModel)]="selectedCityID" (ngModelChange)="filterDestinations()">
+            <mat-option value="">Odaberi grad</mat-option>
+            <mat-option *ngFor="let city of cities$ | async" [value]="city.cityID">{{ city.cityName}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Drzava</mat-label>
+        <mat-select [(ngModel)]="selectedCountryID" (ngModelChange)="filterDestinations()">
+            <mat-option value="">Odaberi državu</mat-option>
+            <mat-option *ngFor="let country of countries$ | async" [value]="country.countryID"> {{country.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Sve do određene cijene</mat-label>
+        <input matInput [(ngModel)]="price" (ngModelChange)="filterDestinations()">
+    </mat-form-field>
+
+</div>
+<div class="card-container">
+    <app-destination-card *ngFor="let destination of filteredDestinations" [destination]="destination" [basicUser]="basicUser" [registerUser]="registerUser"></app-destination-card>
+</div>

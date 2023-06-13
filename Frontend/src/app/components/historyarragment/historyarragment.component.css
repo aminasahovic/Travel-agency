@@ -1,0 +1,35 @@
+.arrangement-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.arrangement-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 25px;
+}
+
+.arrangement-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  background-image: linear-gradient(45deg, #c4f1c4, #b6e7b6);
+  color: #333;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Added outer shadow */
+}
+
+.arrangement-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-image: linear-gradient(45deg, #287d28, #206d20);
+  color: #fff;
+}
+
+.arrangement-card h3 {
+  margin-top: 0;
+}
+
+.arrangement-card p {
+  margin-bottom: 0;
+}

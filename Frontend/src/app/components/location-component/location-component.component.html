@@ -1,0 +1,11 @@
+<div class="slider-container">
+  <appi-img-slider [destinationId]="accommodationId"></appi-img-slider>
+</div>
+<div class="accommodation-info">
+  <!-- Display the information about the accommodation here -->
+  <h2>{{ accommodation?.name }}</h2>
+  <p>Number of rooms: {{ accommodation?.numberOfRooms }}</p>
+  <p>Price: {{ accommodation?.price }}</p>
+  <!-- Display other relevant information -->
+  <button class="book-button" (click)="onClosePopup()">Nazad</button>
+</div>

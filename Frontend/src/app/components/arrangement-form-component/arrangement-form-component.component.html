@@ -1,0 +1,82 @@
+<div class="arrangement-form">
+  <div class="form-column">
+
+    <mat-form-field *ngIf="role==='Employee'">
+      <mat-label>Korisnik</mat-label>
+      <mat-select [(value)]="selectedUser">
+        <mat-option *ngFor="let user of users" [value]="user">
+          {{ user.firsName }} {{user.lastName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Country</mat-label>
+      <mat-select [(value)]="selectedCountry" (selectionChange)="fetchCities()">
+        <mat-option *ngFor="let country of countries" [value]="country">
+          {{ country.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>City</mat-label>
+      <mat-select [(value)]="selectedCity" (selectionChange)="fetchAccommodations()">
+        <mat-option *ngFor="let city of cities" [value]="city">
+          {{ city.cityName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Accommodation</mat-label>
+      <mat-select [(value)]="selectedAccommodation">
+        <mat-option *ngFor="let accommodation of accommodations" [value]="accommodation">
+          {{ accommodation.name }} <button class="button" (click)="openPopup(accommodation)" value="Pogledaj">Pogledaj
+            više</button>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <app-location-popup [isOpen]="showPopup" [accommodationId]="selectedAccommodationId"
+      (isOpenChange)="onClosePopup2()"></app-location-popup>
+
+
+    <mat-form-field>
+      <mat-label>Transport</mat-label>
+      <mat-select [(value)]="selectedTransport">
+        <mat-option *ngFor="let transport of transports" [value]="transport">
+          {{ transport.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Number of Persons</mat-label>
+      <input matInput type="number" [(ngModel)]="numberOfPersons">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Datum odlaska</mat-label>
+      <input [(ngModel)]="this.selectedDepartureTime" matInput [matDatepicker]="departurePicker">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="departurePicker"></mat-datepicker-toggle>
+      <mat-datepicker #departurePicker></mat-datepicker>
+      <!-- <mat-error
+              *ngIf="signUpForm.controls['birthDate'].dirty && signUpForm.hasError('required','birthDate')">
+              *Unos datuma rodjenja je obavezan
+          </mat-error> -->
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Datum dolaska</mat-label>
+      <input [(ngModel)]="selectedArrivalTime" matInput [matDatepicker]="arrivalPicker">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="arrivalPicker"></mat-datepicker-toggle>
+      <mat-datepicker #arrivalPicker></mat-datepicker>
+      <!-- <mat-error
+            *ngIf="signUpForm.controls['birthDate'].dirty && signUpForm.hasError('required','birthDate')">
+            *Unos datuma rodjenja je obavezan
+        </mat-error> -->
+    </mat-form-field>
+    <button mat-button color="primary" (click)="submitForm()">Submit</button>
+  </div>
+</div>

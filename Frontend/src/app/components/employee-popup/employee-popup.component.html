@@ -1,0 +1,14 @@
+<div class="popup-background" *ngIf="showPopup">
+    <div class="popup">
+        <div class="popup-header">
+            <h2>{{function.name}}</h2>
+            <button (click)="onClosePopup()">X</button>
+        </div>
+        <div class="popup-content">
+            <app-arrangement-form-component *ngIf="function.func==='reservation'"></app-arrangement-form-component>
+            <app-add-destination *ngIf="function.func==='add-destination'"></app-add-destination>
+            <app-register-user *ngIf="function.func==='registration'"></app-register-user>
+            <app-report *ngIf="function.func==='reprot'"></app-report>
+        </div>
+    </div>
+</div>

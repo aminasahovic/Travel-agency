@@ -1,0 +1,20 @@
+<div class="navbar">
+    <div class="user-info">
+        <div class="icon" style="background-image: url({{imgURL}});"></div>
+            <span>{{ name }}</span>
+    </div>
+    <ul class="navbar-list">
+      <li *ngFor="let link of links" (click)="onLinkClick(link)">
+        <i class="material-icons">{{ link.icon }}</i>
+        <span class="link-label">{{ link.label }}</span>
+      </li>
+    </ul>
+  </div>
+  
+  <div class="content">
+    <router-outlet *ngIf="!currentComponent"></router-outlet>
+    <div *ngIf="currentComponent">
+      <ng-container *ngComponentOutlet="currentComponent"></ng-container>
+    </div>
+  </div>
+  

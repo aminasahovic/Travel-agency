@@ -1,0 +1,63 @@
+.wrapper {
+  width: 100%;
+  height: auto;
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  background-image: url("../../assets/Images/homepage-img.jpg");
+
+}
+
+.content {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.861);
+  display: flex;
+
+}
+
+.logo {
+  margin-left: 20px;
+  width: 25%;
+  margin-top: 10px;
+  margin-bottom: auto;
+  justify-content: center;
+}
+
+.links {
+  width: 75%;
+  margin-top: 68px;
+}
+
+img {
+  width: auto;
+  height: 120px;
+  flex-wrap: wrap;
+}
+
+ul {
+  position: absolute;
+  right: 25px;
+  top: 40px;
+}
+
+li {
+
+  display: inline;
+  color: whitesmoke;
+  margin-right: 2.5rem;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+button[mat-stroked-button] {
+  color: whitesmoke;
+  font-size: 15px;
+  border: 2px solid #096A2E;
+}
+
+button[mat-raised-button] {
+  background-color: #096A2E;
+  font-size: 15px;
+  color: whitesmoke;
+}

@@ -1,0 +1,17 @@
+<div class="slider">
+  <div class="slides" *ngIf="images" [style.transform]="'translateX(' + slideIndex * (-100) + '%)'">
+    <div *ngFor="let image of images" class="slide">
+      <div class="image-wrapper">
+        <img src="{{ getImg(image.imageByteArray) }}" alt="slider image">
+      </div>
+      <button class="delete-button" (click)="deleteImage(image.destinationImageID)">Izbriši</button>
+    </div>
+    <div class="empty">
+      <h4>Trenutno nema slika</h4>
+      <h5>Dodajte novu sliku</h5>
+      <button class="add-btn">Dodaj</button>
+    </div>
+  </div>
+  <a class="prev" (click)="previousSlide()">&#10094;</a>
+  <a class="next" (click)="nextSlide()">&#10095;</a>
+</div>

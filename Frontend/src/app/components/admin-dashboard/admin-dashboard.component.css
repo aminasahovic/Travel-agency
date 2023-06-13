@@ -1,0 +1,91 @@
+/* Set the height of the sidenav container to fill the viewport */
+mat-sidenav-container {
+  height: 100vh;
+}
+
+/* Style the user info section */
+.user-info {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #7eb4458d;
+  /* color: rgb(103, 103, 103); */
+}
+.icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  color: #fff;
+  /* background-image: url({{imgURL}}); */
+  background-size: cover;
+}
+span {
+  margin-left: 0.5rem;
+}
+
+/* Style the settings icon */
+mat-icon:last-child {
+  margin-left: auto;
+  cursor: pointer;
+  margin-top: -1rem;
+}
+
+mat-list-item {
+  display: flex;
+  align-items: center;
+}
+
+mat-icon {
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.heading {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Style the link list */
+mat-list {
+  margin-top: 16px;
+}
+
+/* Style the link items */
+mat-list-item {
+  cursor: pointer;
+}
+
+.heading {
+  display: inline;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Style the link items on hover */
+mat-list-item:hover {
+  background-color: #84b54f8d;
+}
+
+/* Style the tab group */
+mat-tab-group {
+  margin-top: 16px;
+}
+
+/* Style the tab labels */
+.mat-tab-label {
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Style the tab content */
+mat-dialog-content {
+  padding: 16px;
+}

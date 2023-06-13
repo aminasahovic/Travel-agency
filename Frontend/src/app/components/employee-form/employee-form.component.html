@@ -1,0 +1,46 @@
+<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Ime</mat-label>
+      <input matInput formControlName="firstName">
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Prezime</mat-label>
+      <input matInput formControlName="lastName">
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>DatumRođenja</mat-label>
+      <input matInput formControlName="birthdate" [matDatepicker]="picker">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Šifra</mat-label>
+      <input matInput formControlName="password" type="password">
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Username</mat-label>
+      <input matInput formControlName="username">
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Mail</mat-label>
+      <input matInput formControlName="email">
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Tip</mat-label>
+      <mat-select formControlName="type">
+        <mat-option value="admin">Admin</mat-option>
+        <mat-option value="employee">Zaposlenik</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    
+  
+    <button mat-raised-button color="primary" type="submit" [disabled]="!employeeForm.valid">Dodaj zaposlenika!</button>
+  </form>
+  

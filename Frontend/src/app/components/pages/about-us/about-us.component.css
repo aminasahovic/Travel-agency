@@ -1,0 +1,169 @@
+.about-us-section {
+
+    margin-top: 3rem;
+    padding: 12rem;
+    display: flex;
+    padding-bottom: 5rem;
+    
+}
+
+.left {
+    /* align-items: right; */
+    background-image:url("../../../../assets/Images/kelsey-curtis--27u_GzlAFw-unsplash.jpg") ;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* sjena oko diva */
+  border: 2px solid #ccc; /* granica diva */
+  padding: 20px;
+  height: 100%;
+}
+.up-left{
+  width: 50%;
+  height: auto;
+  padding: 4rem;
+  
+}
+
+
+.right {
+    width: 50%;
+}
+
+.paragarf {
+    width: 60%;
+    border: 1px solid #F5F5F5; 
+    text-align: center;
+    padding: 2rem;
+    color: #777;
+    border-radius: 20px;
+
+}
+
+.clients-header {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #333333bd;
+    letter-spacing: 0.1em;
+    text-align: center;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    font-family: 'Playfair Display';
+  }
+  .clients-header h4{
+    color: #8549155d; /* svijetlo žuta boja, može se zamijeniti bilo kojom drugom svijetlom bojom */
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:  1.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    margin-top: 2rem;
+  
+  }
+  .reviews {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .review {
+    flex-basis: 30%;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    max-width: fit-content;
+    margin: 1rem;
+  }
+  
+  
+  .review img {
+    width: 100%;
+    height: auto;
+    border-radius: 10%;
+  }
+  
+  .review h3 {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: #555;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .review p {
+    color: #777;
+    font-size: 1rem;
+    line-height: 1.5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .review img{
+    border-radius: 49%;
+    width: 100px;
+    height: auto;
+    
+  }
+  
+  .reviews-main {
+    width: 100%;
+  }
+  
+  .clients {
+    padding-left: 10rem;
+    padding-right: 10rem;
+    padding-bottom: 10rem;
+  }
+
+  .knowUs{
+    font-size:3rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #103312b3;
+    letter-spacing: 0.1em;
+    font-family: 'Playfair Display';
+  }
+
+  .green-button{
+    background-color: #fff; /* bijela pozadina */
+    color: #2E8B57; /* zelena boja teksta */
+    border: 2px solid #2E8B57; /* granica zelene boje */
+    padding: 10px 20px; /* dodatni prostor unutar granice */
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2); /* sjena iza teksta */
+    box-shadow: 0 5px 5px rgba(46, 139, 87, 0.1), inset 0 -3px 0 rgba(46, 139, 87, 0.5); /* sjene unutra i vani */
+    border-radius: 5px; /* zaobljeni rubovi */
+    width: 20rem;
+    height:4rem;
+    animation: jump 0.9s ease-out infinite;
+
+  }
+  @keyframes jump {
+    0% {
+      transform: translateY(0); /* početni položaj */
+    }
+    50% {
+      transform: translateY(-5px); /* skok na sredini */
+    }
+    100% {
+      transform: translateY(0); /* vraćanje u početni položaj */
+    }
+  }
+
+  .button-offer{
+    width: 100%;
+    text-align: center;
+    z-index: -100;
+    margin-bottom: 5rem;
+  }
+  .button-offer button{
+    cursor: pointer;
+  }
+  

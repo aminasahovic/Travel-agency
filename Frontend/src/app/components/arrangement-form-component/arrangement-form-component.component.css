@@ -1,0 +1,101 @@
+.arrangement-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+
+
+}
+
+.form-column {
+  padding-top: 3rem;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.mat-select {
+  width: 100%;
+}
+
+.mat-input-element {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+  transition: background-color 0.3s ease;
+}
+
+.mat-select-panel {
+  background-color: #f5f5f5;
+}
+
+.mat-option {
+  color: #333;
+}
+
+.mat-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.mat-button:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+  .arrangement-form {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+.mat-input-element {
+  background-color: lightgreen;
+}
+
+.mat-button {
+  background-color: lightgreen;
+  color: #333;
+}
+
+.mat-button:hover {
+  background-color: #2ecc71;
+}
+
+/* Animation for moving effect */
+
+@keyframes move {
+  0% {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.arrangement-form,
+.form-column,
+.mat-form-field,
+.mat-select,
+.mat-input-element,
+.mat-select-panel,
+.mat-option,
+.mat-button {
+  animation: move 0.4s ease-in-out;
+}

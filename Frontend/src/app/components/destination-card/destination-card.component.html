@@ -1,0 +1,14 @@
+<div class="card">
+    <img src={{destination.img}} alt="Destination Image">
+    <h2>{{ destination.name }}</h2>
+    <div class="info">
+        <p>{{ destination.city.cityName }}</p>
+        <p>Rate: {{ destination.rate }}</p>
+    </div>
+    <button *ngIf="basicUser==false" (click)="openPopup()">Uredi</button>
+    <button *ngIf="basicUser==true" (click)="openDetail2()">Pogledaj ponudu</button>
+    <button *ngIf="registerUser==true" (click)="openDetail()">Detalji</button>
+
+</div>
+<app-pop-up [showPopup]="showPopup" [popupData]="destination"  (closePopup)="closePopup()"></app-pop-up>
+<app-destination-detail [showDetail]="showDetail" [popupData]="destination" [anonimo]="anonimo" (closePopup)="closeDetail()"></app-destination-detail>

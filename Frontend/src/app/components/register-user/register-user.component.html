@@ -1,0 +1,76 @@
+<div class="SignUp">
+    <form [formGroup]="signUpForm">
+        <div class="cointener">
+            <!-- fName -->
+            <mat-form-field class="signUp-example-full-width">
+                <mat-label>Ime</mat-label>
+                <input formControlName="firstName" name="firstName" required matInput placeholder="" type="name"
+                    value="">
+                <mat-error
+                    *ngIf="signUpForm.controls['firstName'].dirty && signUpForm.hasError('required','firstName')">
+                    *Unos imena je obavezan
+                </mat-error>
+            </mat-form-field>
+            <!-- lName -->
+            <mat-form-field class="signUp-example-full-width">
+                <mat-label>Prezime</mat-label>
+                <input formControlName="lastName" matInput placeholder="" type="name" value="">
+                <mat-error *ngIf="signUpForm.controls['lastName'].dirty && signUpForm.hasError('required','lastName')">
+                    *Unos prezimena je obavezan
+                </mat-error>
+            </mat-form-field>
+            <!-- DateBirth -->
+            <div clas="dateTimePicker">
+                <mat-form-field appearance="fill">
+                    <mat-label>Choose a date</mat-label>
+                    <input formControlName="birthDate" matInput [matDatepicker]="picker">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error
+                        *ngIf="signUpForm.controls['birthDate'].dirty && signUpForm.hasError('required','birthDate')">
+                        *Unos datuma rodjenja je obavezan
+                    </mat-error>
+                </mat-form-field>
+                <!-- <input type="file" (change)="onFileSelected($event)"> -->
+            </div>
+            <!-- Email -->
+            <mat-form-field class="signUp-example-full-width">
+                <mat-label>Email</mat-label>
+                <input formControlName="email" matInput placeholder="" type="email" value="">
+                <mat-error *ngIf="signUpForm.controls['email'].dirty && signUpForm.hasError('required','email')">
+                    *Unos Emaila je obavezan
+                </mat-error>
+                <mat-error *ngIf="signUpForm.hasError('email','email')">
+                    *Format nije pravilan, ponovite unos
+                </mat-error>
+            </mat-form-field>
+            <!-- Lozinka -->
+            <mat-form-field class="signUp-example-full-width">
+                <mat-label>Korisničko ime</mat-label>
+                <input formControlName="username" matInput placeholder="" type="" value="">
+                <mat-error *ngIf="signUpForm.controls['username'].dirty && signUpForm.hasError('required','username')">
+                    *Unos korisnickog imena je obavezan
+                </mat-error>
+            </mat-form-field>
+            <!-- Potvrdi lozinku -->
+            <mat-form-field class="signUp-example-full-width">
+                <mat-label>Lozinka</mat-label>
+                <input formControlName="password" type="password" matInput placeholder="" value="">
+                <mat-error *ngIf="signUpForm.controls['password'].dirty && signUpForm.hasError('required','password')">
+                    *Unos lozinke je obavezan
+                </mat-error>
+                <mat-error *ngIf="signUpForm.hasError('minlength','_password')">
+                    *Lozinka mora imati minimalno 4 karaktera
+                </mat-error>
+
+            </mat-form-field>
+            <div mat-dialog-actions>
+                <button mat-raised-button color="primary" (click)="onSignUp()"> Kreiraj nalog</button>
+                <button mat-button [mat-dialog-close]="" cdkFocusInitial>Odustani</button>
+            </div>
+
+        </div>
+    </form>
+    <br>
+</div>

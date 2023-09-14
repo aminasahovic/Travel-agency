@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TuristickaAgenija.Repository;
 
@@ -11,9 +12,11 @@ using TuristickaAgenija.Repository;
 namespace Repository.TuristickaAgenija.Migrations
 {
     [DbContext(typeof(TuristickaAgencijaDbContext))]
-    partial class TuristickaAgencijaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230702171328_twofactmig")]
+    partial class twofactmig
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -408,13 +411,11 @@ namespace Repository.TuristickaAgenija.Migrations
                     b.Property<bool?>("isDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("phoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool?>("twofactActive")
+                    b.Property<bool>("twofactActive")
                         .HasColumnType("bit");
 
                     b.Property<string>("twofcode")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UsersID");

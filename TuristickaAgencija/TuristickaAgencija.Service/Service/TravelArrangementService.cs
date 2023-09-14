@@ -69,7 +69,7 @@ namespace Service.TuristickaAgencija.Service
 
         public List<TravelArrangement> GetByUserId(int userid)
         {
-            return travelArrangmentRepository.GetAllTransportation().Where(x=>x.Users.UsersID== userid).ToList();
+            return travelArrangmentRepository.GetAllTransportation().Where(x => x.Users.UsersID == userid).Reverse().ToList();
         }
 
         public void Remove(int id)

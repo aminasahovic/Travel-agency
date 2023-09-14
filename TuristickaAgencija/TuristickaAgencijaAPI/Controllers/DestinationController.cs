@@ -31,16 +31,16 @@ namespace Web.TuristickaAgencija.Controllers
         public Destination AddDestination(DestinationAddVM destination)
         {
             destinationService.Add(destination);
-            //for (int i = 0; i < usersService.GetAll().Count(); i++)
-            //{
-            //    if (usersService.GetAll()[i].IsEmailAccepted == true)
-            //    {
-            //        var email = usersService.GetAll()[i].Email;
-            //        var user = usersService.GetAll()[i];
-            //        var emailModel = new Email(email, "SkyTravel", EmailBody.EmailStringBody(email, "", user.FirsName + " " + user.LastName, 4, destination.Name, destination.Price));
-            //        _emailService.SendEmail(emailModel, 4);
-            //    }
-            //}
+            for (int i = 0; i < usersService.GetAll().Count(); i++)
+            {
+                if (usersService.GetAll()[i].IsEmailAccepted == true)
+                {
+                    var email = usersService.GetAll()[i].Email;
+                    var user = usersService.GetAll()[i];
+                    var emailModel = new Email(email, "SkyTravel", EmailBody.EmailStringBody(email, "", user.FirsName + " " + user.LastName, 4, destination.Name, destination.Price));
+                    _emailService.SendEmail(emailModel, 4);
+                }
+            }
             return destinationService.getLast();
         }
         [HttpDelete("{id}")]
@@ -62,18 +62,19 @@ namespace Web.TuristickaAgencija.Controllers
         {
 
             destinationService.Update(destination);
+
+            for (int i = 0; i < usersService.GetAll().Count(); i++)
+            {
+                if (usersService.GetAll()[i].IsEmailAccepted == true)
+                {
+                    var email = usersService.GetAll()[i].Email;
+                    var user = usersService.GetAll()[i];
+                    var emailModel = new Email(email, "SkyTravel", EmailBody.EmailStringBody(email, "", user.FirsName + " " + user.LastName, 4, destination.Name, destination.Price));
+                    _emailService.SendEmail(emailModel, 4);
+                }
+            }
             return Ok(destinationService.GetAll());
 
-            //for (int i = 0; i < usersService.GetAll().Count(); i++)
-            //{
-            //    if (usersService.GetAll()[i].IsEmailAccepted == true)
-            //    {
-            //        var email = usersService.GetAll()[i].Email;
-            //        var user = usersService.GetAll()[i];
-            //        var emailModel = new Email(email, "SkyTravel", EmailBody.EmailStringBody(email, "", user.FirsName + " " + user.LastName, 4, destination.Name, destination.Price));
-            //        _emailService.SendEmail(emailModel, 4);
-            //    }
-            //}
         }
         [HttpDelete("DeleteDestination/{id}")]
         public async Task<ActionResult<List<Destination>>> DeleteDestination(int id)

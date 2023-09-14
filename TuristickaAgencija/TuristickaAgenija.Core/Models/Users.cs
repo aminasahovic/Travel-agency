@@ -21,7 +21,12 @@ namespace Core.TuristickaAgencija.Models
         public bool IsEmailAccepted { get; set; }
         public string? ResetPasswordToken { get; set; }
         public DateTime ResetPasswordExpiry { get; set; }
+        public bool? isDeleted { get; set; }
         public string? ProfileImageBase64 { get; set; } // base64 kodirana slika
         public byte[]? ProfileImage { get; set; } // dekodirani byte niz slike
+        public bool? twofactActive { get; set; }
+        public string? twofcode { get; set; }
+        public string? phoneNumber { get; set; }
+
     }
 }

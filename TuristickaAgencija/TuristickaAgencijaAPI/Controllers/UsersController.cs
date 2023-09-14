@@ -65,6 +65,17 @@ namespace Web.TuristickaAgencija.Controllers
             if (user.IsEmailAccepted == false)
                 return BadRequest(new { Message = "Potvrdite mail" });
             user.Token = CreateJWT(user);
+            if(user.twofactActive== true)
+            {
+                user.twofcode = RandomString(6);
+                usersService.UpdateUser2FA(user);
+                usersService.SendSmsCode(user.phoneNumber, user.twofcode);
+                return Ok(new
+                {
+                    Token = user.Token,
+                    Message = "Login Success but no 2FA"
+                });
+            }
 
             return Ok(new
             {
@@ -88,7 +99,12 @@ namespace Web.TuristickaAgencija.Controllers
             ConfirmMail(user.Email);
             return Ok(new { Message = "User registered" });
         }
-
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> DeleteUserById(int id)
+        {
+            usersService.DeleteUserById(id);
+            return Ok();
+        }
         [HttpPost("registerbyEmployee")]
         public async Task<IActionResult> Register(UsersAddVM user)
         {
@@ -138,6 +154,14 @@ namespace Web.TuristickaAgencija.Controllers
             usersService.ConfirmMail(user.UsersID);
             return Ok();
         }
+        [HttpPost("AddEmployee")]
+        public async Task<IActionResult> AddEmployee(UsersAddVM obj)
+        {
+
+            usersService.Add(obj);
+            
+            return Ok();
+        }
 
         [HttpGet("GetProfileImgById")]
         public async Task<IActionResult> GetProfileImgById(int id)
@@ -160,6 +184,13 @@ namespace Web.TuristickaAgencija.Controllers
                     _emailService.SendEmail(emailModel, 3);
                 }
             }
+            return Ok();
+        }
+
+        [HttpPut("EditUserProfile")]
+        public async Task<IActionResult> EditProfile(UsersEditVM user)
+        {
+            usersService.UpdateUser(user);
             return Ok();
         }
 
@@ -187,6 +218,29 @@ namespace Web.TuristickaAgencija.Controllers
             var emailModel = new Email(email, "Restart lozinike - SkyTravel", EmailBody.EmailStringBody(email, emailtoken, user.FirsName + " " + user.LastName));
             _emailService.SendEmail(emailModel, 1);
             usersService.Update(DateTime.Now.AddMinutes(60), emailtoken, user.UsersID);
+            return Ok();
+        }
+
+        [HttpPost("send_notification_mail/{email}")]
+        public async Task<IActionResult> SendNotificationEmail(string email)
+        {
+            var user = usersService.GetByEmail(email);
+            if (user is null)
+            {
+                return NotFound(new
+                {
+                    StatusCode = 404,
+                    Meessage = "Email ne postoji u bazi"
+                });
+            }
+            if (user.IsEmailAccepted == false)
+            {
+                return BadRequest(new { Message = "Nazalost mail nije potvrđen" });
+            }
+       
+            string from = "skytravel.rs1.amina.husein@gmail.com";
+            var emailModel = new Email(email, "Obavjestenje - SkyTravel", EmailBody.EmailStringBody(email,"", user.FirsName + " " + user.LastName,3));
+            _emailService.SendEmail(emailModel, 3);
             return Ok();
         }
 
@@ -226,6 +280,14 @@ namespace Web.TuristickaAgencija.Controllers
             return Ok();
         }
 
+        private static Random random = new Random();
+
+        public static string RandomString(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, length)
+                .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
 
         private string CreateJWT(Users users)
         {
@@ -257,6 +319,12 @@ namespace Web.TuristickaAgencija.Controllers
 
             return usersService.GetById(id);
         }
+        [HttpGet("Code")]
+        public bool Code(string code, int user)
+        {
+
+            return usersService.TwoFactor(code, user);
+        }
 
 
         [HttpGet("generatePdf")]
@@ -275,15 +343,15 @@ namespace Web.TuristickaAgencija.Controllers
             htmlcontent += "<h3> Email: " + header.Email + "</h3>";
             htmlcontent += "<br/>";
             htmlcontent += "<h3>Aranzmani:<h3/>";
-            htmlcontent += "<table style ='width:100%; border: 1px solid #000'>";
+            htmlcontent += "<table style='width:100%; border-collapse: collapse;'>";
             htmlcontent += "<thead style='font-weight:bold'>";
             htmlcontent += "<tr>";
-            htmlcontent += "<td style='border:1px solid #000'> Destinacija naziv </td>";
-            htmlcontent += "<td style='border:1px solid #000'> Grad </td>";
-            htmlcontent += "<td style='border:1px solid #000'>Prevoz</td>";
-            htmlcontent += "<td style='border:1px solid #000'>Datum odlaska</td >";
-            htmlcontent += "<td style='border:1px solid #000'>Cijena</td>";
-            htmlcontent += "<td style='border:1px solid #000'>Total</td>";
+            htmlcontent += "<td style='border:1px solid #000; padding:5px;'> Destinacija naziv </td>";
+            //htmlcontent += "<td style='border:1px solid #000; padding:5px;'> Grad </td>";
+            htmlcontent += "<td style='border:1px solid #000; padding:5px;'>Prevoz</td>";
+            htmlcontent += "<td style='border:1px solid #000; padding:5px;'>Datum odlaska</td >";
+            htmlcontent += "<td style='border:1px solid #000; padding:5px;'>Cijena</td>";
+            //htmlcontent += "<td style='border:1px solid #000; padding:5px;'>Total</td>";
 
             htmlcontent += "</tr>";
             htmlcontent += "</thead >";
@@ -296,17 +364,20 @@ namespace Web.TuristickaAgencija.Controllers
                 arr.ForEach(item =>
                 {
                     htmlcontent += "<tr>";
-                    htmlcontent += "<td>" + item.Destination.Name + "</td>";
-                    htmlcontent += "<td>" + item.Destination.City + "</td>";
-                    htmlcontent += "<td>" + item.Transportation.Name + "</td >";
-                    htmlcontent += "<td>" + item.DepartureTime + "</td>";
-                    htmlcontent += "<td> " + item.Price + "</td >";
+                    htmlcontent += "<td style='border:1px solid #000; padding:5px;'>" + item.Destination.Name + "</td>";
+                    //htmlcontent += "<td style='border:1px solid #000; padding:5px;'>" + item.Destination.City.CityName+ "</td>";
+                    htmlcontent += "<td style='border:1px solid #000; padding:5px;'>" + item.Transportation.Name + "</td >";
+                    htmlcontent += "<td style='border:1px solid #000; padding:5px;'>" + item.DepartureTime + "</td>";
+                    htmlcontent += "<td style='border:1px solid #000; padding:5px;'> " + item.Price + " KM</td >";
                     total += item.Price;
                     htmlcontent += "</tr>";
 
                 });
                 htmlcontent += "<tr>";
-                htmlcontent += "<td style='border:1px solid #000'> " + " Total: " + total + "</td >";
+                htmlcontent += "<td></td >";
+                htmlcontent += "<td></td >";
+                htmlcontent += "<td></td >";
+                htmlcontent += "<td style='border:1px solid #000;  padding:5px;'> " + " Total: " + total + " KM</td >";
                 htmlcontent += "</tr >";
 
             }
@@ -315,10 +386,10 @@ namespace Web.TuristickaAgencija.Controllers
                 htmlcontent = "<div style='width:100%; text-align:center'>";
                 htmlcontent += "Korisnik još uvijek nije kreirano ponude";
             }
-             
-            
 
-           
+
+
+
             //htmlcontent += "<h3> Customer : " + header.CustomerName + "</h3>";
             //htmlcontent += "<p>" + header.DeliveryAddress + "</p>";
             //htmlcontent += "<h3> Contact : 9898989898 & Email :ts@in.com </h3>";

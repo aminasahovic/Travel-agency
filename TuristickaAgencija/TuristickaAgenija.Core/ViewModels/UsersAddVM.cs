@@ -14,7 +14,10 @@ namespace Core.TuristickaAgencija.ViewModels
         public string Password { get; set; }
         public string Username { get; set; }
         public DateTime BirthDate { get; set; }
-        public string ProfileImageBase64 { get; set; }
+        public string PhoneNumber { get; set; }
+        public string? Role { get; set; } = string.Empty;
+        public bool TwoFA { get; set; } = false;
+        public string? ProfileImageBase64 { get; set; }
         public string? ProfileImageBase64Url { get; set; } // base64 kodirana slika
 
 

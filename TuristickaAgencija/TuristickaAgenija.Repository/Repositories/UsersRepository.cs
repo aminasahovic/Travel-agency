@@ -1,23 +1,35 @@
 ﻿using Azure.Messaging;
 using Core.TuristickaAgencija.Models;
+using Core.TuristickaAgencija.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using TuristickaAgenija.Repository;
 
+
+
 namespace Repository.TuristickaAgenija.Repositories
 {
-    public interface IUsersRepository
+    
+
+
+
+        public interface IUsersRepository
     {
         Users GetByLogin(string username, string password);
         Users GetById(int id);
         Users? GetByEmail(string email);
         List<Users> getAll();
         string getImgById(int id);
+        void DeleteUserId(int id);
+        void UpdateUserId(Users user);
     }
+
+
     public class UsersRepository: Repository<Users>, IUsersRepository
     {
         DbSet<Users> _dbSet;
@@ -26,9 +38,16 @@ namespace Repository.TuristickaAgenija.Repositories
             _dbSet=db.Set<Users>();
         }
 
+        public void DeleteUserId(int id)
+        {
+            var user=_dbSet.Find(id);
+            user.isDeleted = true;
+            _dbSet.Update(user);
+        }
+
         public List<Users> getAll()
         {
-           return _dbSet.ToList();
+           return _dbSet.Where(x=> x.isDeleted==false).ToList();
         }
 
         public Users? GetByEmail(string email)
@@ -64,5 +83,14 @@ namespace Repository.TuristickaAgenija.Repositories
             }
             return img;
         }
+
+        public void UpdateUserId(Users user)
+        {
+
+            _dbSet.Update(user);
+            
+        }
     }
+
+
 }

@@ -18,7 +18,7 @@ This project was developed in collaboration with my colleague, [@marichusein](ht
 
 1. **Setting Up the Backend**
    - Clone the repository.
-   - Navigate to the `backend` directory and run the following commands:
+   - Navigate to the `TuristickaAgencija` directory and run the following commands:
      ```shell
      dotnet restore
      dotnet run

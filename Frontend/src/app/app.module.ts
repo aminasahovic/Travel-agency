@@ -57,6 +57,13 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {Component, ViewChild} from '@angular/core';
 import {MatAccordion, } from '@angular/material/expansion';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { FooterComponent } from './components/footer/footer.component';
+import { AdminUsersComponent } from './components/admin-users/admin-users.component';
+import { AdminLocationComponent } from './components/admin-location/admin-location.component';
+import { EditProfileComponentComponent } from './components/edit-profile-component/edit-profile-component.component';
+import { TwofactorauComponent } from './components/twofactorau/twofactorau.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -98,6 +105,12 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     EmployeePopupComponent,
     RegisterUserComponent,
     ReportComponent,
+    FooterComponent,
+    AdminUsersComponent,
+    AdminLocationComponent,
+    EditProfileComponentComponent,
+    TwofactorauComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -119,7 +132,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatTableModule,
     MatSelectModule,
     MatSliderModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatSnackBarModule,
+    MatCheckboxModule
 
 
   ],

@@ -1,7 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
+import { UserStoreService } from './user-store.service';
+import { tap } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +12,7 @@ import { Router } from '@angular/router';
 export class AuthService {
   private urlBase: string = 'https://localhost:7272/api/Users/';
   private userPayload: any;
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private userStore: UserStoreService) {
     this.userPayload = this.decodedToken();
   }
   signUp(userObj: any) {
@@ -18,9 +21,28 @@ export class AuthService {
   signUpByEmployee(userObj: any) {
     return this.http.post<any>(`${this.urlBase}registerbyEmployee`, userObj);
   }
-  login(loginObj: any) {
-    return this.http.post<any>(`${this.urlBase}authenticate`, loginObj);
+  registerEmployee(obj:any){
+    return this.http.post<any>(`${this.urlBase}registerbyEmployee`, obj);
+
   }
+  login(loginObj: any) {
+    return this.http.post<any>(`${this.urlBase}authenticate`, loginObj)
+      .pipe(
+        tap((response) => {
+          // Store the token
+          this.storeToken(response.token);
+          alert("prijava");
+          // Update user information in the UserStoreService
+          const fullNameFromToken = this.getFullNameFromToken();
+          const roleFromToken = this.getRoleFromToken();
+          const idFromToken = this.getIdFromToken();
+          this.userStore.setNameFromStore(fullNameFromToken);
+          this.userStore.setRoleFromStore(roleFromToken);
+          this.userStore.setIdFromStore(idFromToken);
+        })
+      );
+  }
+  
   ExistMail(mail: any) {
     return this.http.post<string>(`${this.urlBase}CheckIfItExistEmail`, mail);
   }
@@ -56,6 +78,9 @@ export class AuthService {
   }
   singOut() {
     localStorage.clear();
+    this.userStore.clearId();
+    this.userStore.clearName();
+    this.userStore.clearRole();
     this.router.navigate(['']);
   }
   generateUserPdf(userId: any) {

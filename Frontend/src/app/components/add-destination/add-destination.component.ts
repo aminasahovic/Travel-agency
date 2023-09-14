@@ -72,16 +72,13 @@ export class AddDestinationComponent implements OnInit {
       .post('https://localhost:7272/api/Destination', destination)
       .subscribe(
         (response:any) => {
-          console.log(response);
 
           this.destinationId=response.destinationID;
-          console.log(this.destinationId);
 
           alert('Uspjesno');
           this.addImagesToBase();
         },
         (error) => {
-          console.error(error);
           alert('Greška');
         }
       );
@@ -100,8 +97,6 @@ export class AddDestinationComponent implements OnInit {
         reader.readAsDataURL(files[i]);
       }
 
-      console.log(this.imageUrls);
-    
   }
 
   addImagesToBase(){
@@ -118,7 +113,6 @@ export class AddDestinationComponent implements OnInit {
  
         },
         (error) => {
-          console.error(error);
           alert('Greška');
         }
       );

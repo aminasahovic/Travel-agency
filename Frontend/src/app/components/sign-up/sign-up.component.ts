@@ -7,12 +7,14 @@ import {
   ValidatorFn,
   FormBuilder,
   Validators,
+  ValidationErrors,
 } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/Services/auth.service';
 import { ResetPasswordService } from 'src/app/Services/reset-password.service';
 import { UserStoreService } from 'src/app/Services/user-store.service';
+import { AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-sign-up',
@@ -20,22 +22,28 @@ import { UserStoreService } from 'src/app/Services/user-store.service';
   styleUrls: ['./sign-up.component.css'],
 })
 export class SignUpComponent {
-  constructor(private auth: AuthService, private fb: FormBuilder, private router: Router, private matDialog: MatDialog, private userStore: UserStoreService, private resetService: ResetPasswordService) {}
+  constructor(
+    private auth: AuthService,
+    private fb: FormBuilder,
+    private router: Router,
+    private matDialog: MatDialog,
+    private userStore: UserStoreService,
+    private resetService: ResetPasswordService
+  ) {}
   log: any = {
     username: '',
     password: '',
   };
-  
+
   error: boolean = false;
-  validMail:boolean=false;
-  firstCheck: boolean=false;
+  validMail: boolean = false;
+  firstCheck: boolean = false;
   errorMessage: string = '';
   reset: boolean = false;
-  showPopup: boolean=false;
-  mailReset: string="";
-  selectedFile: any ;
+  showPopup: boolean = false;
+  mailReset: string = '';
+  selectedFile: any;
   selectedFileInBase64: string | null = null;
-
 
   signUpForm = new FormGroup({
     firstName: new FormControl('', Validators.required),
@@ -47,9 +55,14 @@ export class SignUpComponent {
     ]),
     username: new FormControl('', Validators.required),
     birthDate: new FormControl('', Validators.required),
-    profileImageBase64:new FormControl(''),
-    profileImageBase64Url:new FormControl('')
-  }); 
+    profileImageBase64: new FormControl(''),
+    profileImageBase64Url: new FormControl(''),
+    phoneNumber: new FormControl('', [
+      Validators.required,
+      this.phoneNumberValidator,
+    ]),
+    twoFA:new FormControl(false),
+  });
 
   cleanForms(inputUsername: any, inputPassword: any) {
     inputPassword.value = '';
@@ -58,7 +71,6 @@ export class SignUpComponent {
   }
 
   onLogin() {
-    console.log(this.log);
     let inputUsername = document.getElementById(
       'LoginMail'
     ) as HTMLInputElement;
@@ -71,11 +83,15 @@ export class SignUpComponent {
       next: (r) => {
         alert(r.message);
         this.auth.storeToken(r.token);
-        const tokenPayload=this.auth.decodedToken();
+        const tokenPayload = this.auth.decodedToken();
         this.userStore.setNameFromStore(tokenPayload.name);
         this.userStore.setRoleFromStore(tokenPayload.role);
         this.userStore.setIdFromStore(tokenPayload.UserID);
-        this.router.navigate(['/user-dashboard']);
+        if (r.message === 'Login Success but no 2FA') {
+          this.router.navigate(['/twofactor']);
+        } else {
+          this.router.navigate(['/user-dashboard']);
+        }
         this.CloseSignIn();
         this.cleanForms(inputUsername, inputPassword);
       },
@@ -87,6 +103,7 @@ export class SignUpComponent {
       },
     });
   }
+
   CheckIfMailExist(control: FormControl) {
     this.auth.ExistMail(control.value).subscribe({
       next: (r) => {
@@ -97,8 +114,7 @@ export class SignUpComponent {
       },
     });
   }
-  clearForms(signUpForm:FormGroup) {
-  }
+  clearForms(signUpForm: FormGroup) {}
 
   onFileSelected(event: any) {
     const files = event.target.files;
@@ -108,65 +124,70 @@ export class SignUpComponent {
       const reader = new FileReader();
       reader.onload = (e: any) => {
         this.selectedFileInBase64 = e.target.result;
-  
-        this.signUpForm.patchValue({ profileImageBase64Url: e.target.result});
-        this.signUpForm.patchValue({ profileImageBase64: e.target.result.split(',')[1] });
+
+        this.signUpForm.patchValue({ profileImageBase64Url: e.target.result });
+        this.signUpForm.patchValue({
+          profileImageBase64: e.target.result.split(',')[1],
+        });
       };
       reader.readAsDataURL(file);
     }
   }
 
+   phoneNumberValidator(control: AbstractControl): ValidationErrors | null {
+    const phoneNumberRegex = /^387\d{7,8}$/;
+  
+    if (control.value && !phoneNumberRegex.test(control.value)) {
+      return { invalidPhoneNumber: true };
+    }
+  
+    return null;
+  }
   onSignUp() {
     if (this.signUpForm.valid) {
-      console.log(this.signUpForm.value);
-      this.auth.signUp(this.signUpForm.value)
-      .subscribe({
+      this.auth.signUp(this.signUpForm.value).subscribe({
         next: (r) => {
-          alert("Uspjenso ste registrovani!");
+          alert('Uspjesno ste registrovani!');
           this.signUpForm.reset();
         },
         error: (r) => {
-          alert("Doslo je do greske! Neko već koristi email ili username");
+          alert('Doslo je do greske! Neko već koristi email ili username');
         },
-
       });
     } else {
-      alert("Provjerite polja")
+      alert('Provjerite polja');
     }
   }
-  CloseSignIn(){
+  CloseSignIn() {
     this.matDialog.closeAll();
   }
   zab() {
     this.reset = true;
   }
-  zatvoriR(){
+  zatvoriR() {
     this.reset = false;
-    this.showPopup=false;
-    this.mailReset="";
-    this.firstCheck=false;
+    this.showPopup = false;
+    this.mailReset = '';
+    this.firstCheck = false;
   }
-  checkValidMail(){
-    const value=this.mailReset;
-    const mailPatern=/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;//regex pater za mail :) 
-    this.validMail=mailPatern.test(value);
+  checkValidMail() {
+    const value = this.mailReset;
+    const mailPatern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; //regex pater za mail :)
+    this.validMail = mailPatern.test(value);
     return this.validMail;
-
   }
-  Test(){
-    this.firstCheck=true;
-    if(this.checkValidMail()==true){
-      
+  Test() {
+    this.firstCheck = true;
+    if (this.checkValidMail() == true) {
       //PozivamoAPI
       this.resetService.sendResetPasswordLink(this.mailReset).subscribe({
-        next:(res)=>{
-          this.showPopup=true;
+        next: (res) => {
+          this.showPopup = true;
         },
-        error:(err)=>{
-          alert("Greška");
-        }
-      })
-
+        error: (err) => {
+          alert('Greška');
+        },
+      });
     }
   }
 }

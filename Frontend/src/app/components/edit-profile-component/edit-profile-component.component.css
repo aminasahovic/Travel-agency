@@ -1,0 +1,81 @@
+/* edit-profile.component.css */
+
+.edit-profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  overflow: hidden;
+  padding: 1rem;
+}
+
+.edit-profile-title {
+  font-size: 24px;
+  color: black;
+  margin-bottom: 24px;
+}
+
+.edit-profile-content {
+  width: 100%;
+}
+
+.edit-profile-form {
+  display: grid;
+  grid-gap: 16px;
+  width: 100%;
+}
+
+.edit-profile-input {
+  width: 100%;
+  color: #fff;
+  background-color: #2d2d2d;
+  border: none;
+  border-radius: 4px;
+  padding: 12px;
+  outline: none;
+  transition: background-color 0.3s;
+}
+
+.edit-profile-input:focus {
+  background-color: #3d3d3d;
+}
+
+.edit-profile-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.edit-profile-actions button {
+  padding: 12px 24px;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s, transform 0.3s;
+  margin: 0 8px; /* Add a gap between buttons */
+}
+
+.edit-profile-actions button.cancel {
+  background-color: #f44336; /* Red color for Cancel button */
+}
+
+.edit-profile-actions button.save {
+  background-color: #00e676; /* Green color for Save button */
+}
+
+.edit-profile-actions button.cancel:hover {
+  background-color: #d32f2f; /* Darker red color on hover */
+  transform: scale(1.1); /* Scaling effect on hover */
+}
+
+.edit-profile-actions button.save:hover {
+  background-color: #00c853; /* Darker green color on hover */
+  transform: scale(1.1); /* Scaling effect on hover */
+}
+
+body {
+  overflow: hidden; /* Remove the overflow */
+}

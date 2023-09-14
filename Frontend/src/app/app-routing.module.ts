@@ -10,6 +10,7 @@ import { ConfirmMailComponent } from './components/confirm-mail/confirm-mail.com
 import { OfferPageComponent } from './components/pages/offer-page/offer-page.component';
 import { LiveChatComponent } from './components/pages/live-chat/live-chat.component';
 import { LocationComponent } from './components/location-component/location-component.component';
+import { TwofactorauComponent } from './components/twofactorau/twofactorau.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'reset', component: ResetPasswordComponent },
   { path: 'confirm', component: ConfirmMailComponent },
   { path: 'user-dashboard/test/:id', component: LocationComponent },
+  { path: 'twofactor', component: TwofactorauComponent },
 
 ];
 

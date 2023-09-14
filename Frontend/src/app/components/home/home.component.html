@@ -13,40 +13,10 @@
     <app-destination-card *ngFor="let destination of filteredDestinations" [destination]="destination"
       [basicUser]="true"></app-destination-card>
   </div>
-
-  <!-- <div footer></div> -->
-
-  <!-- <div class="button-container">
-    <button class="arrow-button">
-      <i class="fas fa-chevron-down"></i>
-    </button>
-  </div>
-   -->
-  <!-- <div class="content">
-
-  <div id="cards">
-    <mat-card class="example-card" *ngFor="let item of serverResponseData">
-        <img class="image-accomodation" mat-card-image src="https://www.brownandhudson.com/assets/uploads/global/Nowhere_road.jpg" alt="Photo of a Shiba Inu">
-      <mat-card-content>
-        <p class="card-title">
-          {{item.name}}
-        </p>
-        <div class="icons">
-          <div class="icon">
-            <mat-icon aria-hidden="false" id="icon-location" aria-label="Example home icon" fontIcon="location_on"></mat-icon>
-          </div>
-        <div class="icon-tekst">
-          <p>Turska, Istanbul</p>
-        </div>
-      </div>
-      <div class="price-div">
-        <p class="price"> Od {{item.price}} KM</p>
-      </div>
-      </mat-card-content>
-      <mat-card-actions>
-        <button id="button-action" mat-button (click)="OpenSignIn()" mat-raised-button color="primary">Pogledaj ponudu</button>
-      </mat-card-actions>
-    </mat-card>
+  <!-- <app-footer></app-footer>     -->
+  <!-- <div class="bottom-element">
+    Ovo je element na dnu stranice.
   </div> -->
-
+  <br/><br/><br/>
+  <app-footer></app-footer>
 </div>

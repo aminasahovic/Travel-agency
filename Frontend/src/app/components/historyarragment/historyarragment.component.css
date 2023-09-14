@@ -1,35 +1,68 @@
 .arrangement-container {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #333;
 }
 
 .arrangement-cards {
+  padding-top: 1rem;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 25px;
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  gap: 20px;
 }
 
 .arrangement-card {
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   border-radius: 5px;
-  padding: 10px;
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
-  background-image: linear-gradient(45deg, #c4f1c4, #b6e7b6);
-  color: #333;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Added outer shadow */
+  padding: 20px;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
 }
 
 .arrangement-card:hover {
   transform: scale(1.05);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  background-image: linear-gradient(45deg, #287d28, #206d20);
-  color: #fff;
 }
 
 .arrangement-card h3 {
-  margin-top: 0;
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #333;
 }
 
 .arrangement-card p {
-  margin-bottom: 0;
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.arrangement-card h2 {
+  font-size: 20px;
+  color: #ff6600;
+  margin-top: 10px;
+}
+
+.basic-info {
+  font-size: 1rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-bottom: 8px;
+  transition: font-size 0.2s ease-in-out, font-weight 0.2s ease-in-out;
+}
+
+.basic-info:hover {
+  white-space: normal;
+  font-size: 1.2rem;
+  font-weight: bold;
 }

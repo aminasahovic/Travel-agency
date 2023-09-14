@@ -40,7 +40,6 @@ export class PopUpComponent {
   }
 
   ngOnInit() {
-    console.log('destinacija' + this.popupData);
     this.editForm = new FormGroup({
       name: new FormControl(this.popupData.name, Validators.required),
       describe: new FormControl(this.popupData.describe, Validators.required),
@@ -51,7 +50,6 @@ export class PopUpComponent {
         Validators.required
       ),
     });
-    console.log(this.showPopup);
 
     this.cities$ = this.http
       .get<City[]>('https://localhost:7272/api/City')
@@ -82,7 +80,6 @@ export class PopUpComponent {
       reader.readAsDataURL(files[i]);
     }
 
-    console.log(this.imageUrls);
   }
   addImagesToBase() {
     this.imageUrls?.forEach((e: any) => {
@@ -95,7 +92,6 @@ export class PopUpComponent {
         .subscribe(
           (response: any) => {},
           (error) => {
-            console.error(error);
             alert('Greška');
           }
         );
@@ -112,7 +108,6 @@ export class PopUpComponent {
             alert('Uspjesno izbrisana destinacija');
           },
           (error) => {
-            console.error(error);
             alert('Greška');
           }
         );
@@ -133,18 +128,11 @@ export class PopUpComponent {
       .post('https://localhost:7272/api/Destination/Update', destination)
       .subscribe(
         (response: any) => {
-          console.log('dodano');
           this.onClosePopup();
           this.addImagesToBase();
           alert('Uspjesno uređeno');
-
-          // this.destinationId=response.destinationID;
-          // console.log(this.destinationId);
-          // alert('Uspjesno');
-          // this.addImagesToBase();
         },
         (error) => {
-          console.error(error);
           alert('Greška');
         }
       );

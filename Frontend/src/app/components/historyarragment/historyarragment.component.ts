@@ -30,7 +30,6 @@ export class HistoryarragmentComponent {
        
         data => {
           this.travelArrangements = data;
-          // console.log(data);
         },
         error => {
           console.error('Failed to fetch travel arrangements:', error);
@@ -41,6 +40,7 @@ export class HistoryarragmentComponent {
     const formattedDateTime = this.datePipe.transform(dateTime, 'dd.MM.yyyy.');
     return formattedDateTime || '';
   }
+
   
 }
 

@@ -14,10 +14,10 @@
                         <mat-label>Lozinka</mat-label>
                         <input id="LoginPassword" matInput placeholder="" type="password" value="">
                     </mat-form-field>
-                     <!--Pass reset-->
+                    <!--Pass reset-->
 
-                     <p style="color:#636262; cursor:pointer; margin-left: auto; margin-right: auto; margin-bottom: -5; font-size: 13px;"
-                     (click)="zab()">Zaboravili ste lozinku?</p>
+                    <p style="color:#636262; cursor:pointer; margin-left: auto; margin-right: auto; margin-bottom: -5; font-size: 13px;"
+                        (click)="zab()">Zaboravili ste lozinku?</p>
                     <div class="error-div">
                         <mat-error *ngIf="error===true">
                             {{errorMessage}}. Please check your inputs
@@ -56,6 +56,20 @@
                                 <mat-error
                                     *ngIf="signUpForm.controls['lastName'].dirty && signUpForm.hasError('required','lastName')">
                                     *Unos prezimena je obavezan
+                                </mat-error>
+                            </mat-form-field>
+
+                            <!-- Broj telefona -->
+                            <mat-form-field class="signUp-example-full-width">
+                                <mat-label>Broj telefona</mat-label>
+                                <input formControlName="phoneNumber" matInput placeholder="" type="email" value="">
+                                <mat-error
+                                    *ngIf="signUpForm.controls['phoneNumber'].dirty && signUpForm.hasError('required','phoneNumber')">
+                                    *Unos broja telefona je obavezan
+                                </mat-error>
+                                <mat-error
+                                    *ngIf="signUpForm.get('phoneNumber')?.hasError('invalidPhoneNumber') && signUpForm.controls['phoneNumber'].dirty">
+                                    *Format nije pravilan, pravilan format: "387..."
                                 </mat-error>
                             </mat-form-field>
                             <!-- DateBirth -->
@@ -101,22 +115,22 @@
                                 <mat-label>Lozinka</mat-label>
                                 <input formControlName="password" type="password" matInput placeholder="" value="">
                                 <mat-error
-                                *ngIf="signUpForm.controls['password'].dirty && signUpForm.hasError('required','password')">
-                                *Unos lozinke je obavezan
-                            </mat-error>
-                            <mat-error
-                            *ngIf="signUpForm.hasError('minlength','_password')">
-                            *Lozinka mora imati minimalno 4 karaktera
-                        </mat-error>
-                   
-                            </mat-form-field> 
+                                    *ngIf="signUpForm.controls['password'].dirty && signUpForm.hasError('required','password')">
+                                    *Unos lozinke je obavezan
+                                </mat-error>
+                                <mat-error *ngIf="signUpForm.hasError('minlength','_password')">
+                                    *Lozinka mora imati minimalno 4 karaktera
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-checkbox formControlName="twoFA">Da li želite 2FA?</mat-checkbox>
+
                             <div mat-dialog-actions>
                                 <button mat-raised-button color="primary" (click)="onSignUp()"> Kreiraj nalog</button>
                                 <button mat-button [mat-dialog-close]="" cdkFocusInitial>Odustani</button>
                             </div>
                         </div>
 
-                    
+
                     </div>
                 </form>
                 <br>

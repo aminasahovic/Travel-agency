@@ -1,0 +1,13 @@
+.form-container {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+mat-form-field,button{
+    width: 50%;
+}
+mat-tab-group{
+    padding: 1.5rem;
+}

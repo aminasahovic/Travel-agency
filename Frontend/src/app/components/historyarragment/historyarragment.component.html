@@ -1,16 +1,16 @@
 <div class="arrangement-container">
-    <h2>Travel Arrangement History</h2>
-    <div class="arrangement-cards">
-      <div *ngFor="let arrangement of travelArrangements" class="arrangement-card">
-        <h3>Smještaj: {{ arrangement.accommodation.name }}</h3>
-        <p>Opis: {{ arrangement.destination.describe }}</p>
-        <p *ngIf="formatDateTime(arrangement.arrivalTime)==='01.01.0001.'">Datum: {{ formatDateTime(arrangement.departureTime) }} - ? </p>
-        <p *ngIf="formatDateTime(arrangement.arrivalTime)!='01.01.0001.'">Datum: {{ formatDateTime(arrangement.departureTime) }} - {{ formatDateTime(arrangement.arrivalTime) }} </p>
-        <p>Prevoz: {{ arrangement.transportation.name }}</p>
-        <h2>Cijena: {{ arrangement.destination.price }}</h2>
-
-        <!-- Add more details as needed -->
-      </div>
+  <h2>Travel Arrangement History</h2>
+  <div class="arrangement-cards">
+    <div *ngFor="let arrangement of travelArrangements" class="arrangement-card">
+      <h3>Smještaj: {{ arrangement.accommodation.name }}</h3>
+      <p>Opis: {{ arrangement.destination.describe }}</p>
+      <p class="basic-info unknown-date" *ngIf="formatDateTime(arrangement.arrivalTime)==='01.01.0001.'">Datum: {{
+        formatDateTime(arrangement.departureTime) }} - ? </p>
+      <p class="basic-info" *ngIf="formatDateTime(arrangement.arrivalTime)!='01.01.0001.'">Datum: {{
+        formatDateTime(arrangement.departureTime) }} - {{ formatDateTime(arrangement.arrivalTime) }} </p>
+      <p class="basic-info transportation">Prevoz: {{ arrangement.transportation.name }}</p>
+      <h2 class="basic-info price">Cijena: {{ arrangement.destination.price }}</h2>
+      <!-- Add more details as needed -->
     </div>
   </div>
-  
+</div>

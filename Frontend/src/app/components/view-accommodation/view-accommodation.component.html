@@ -1,17 +1,22 @@
 <div class="accommodation-container">
   <mat-card *ngFor="let accommodation of accommodations" class="accommodation-card">
     <div class="img">
-      <img [src]="getFirstImage(accommodation)" class="accommodation-image" alt="Accommodation Image">
+      <!-- <img *ngIf="accommodation.accommodationImages && accommodation.accommodationImages[0]?.imageByteArray"  alt="Accommodation Image"> -->
+
+      <img [src]="accommodation?.imageUrl" class="accommodation-image" alt="Accommodation Image">
+
+      <!-- <img [src]="getFirstImage(accommodation)" class="accommodation-image" alt="Accommodation Image"> -->
+      <!-- <img [src]="getFirstImage(accommodation)" class="accommodation-image" alt="Accommodation Image"> -->
     </div>
     <mat-card-header>
       <mat-card-title>{{ accommodation.name }}</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <p>Number of rooms: {{ accommodation.numberOfRooms }}</p>
-      <p>Price: {{ accommodation.price }}</p>
+      <p>Broj soba: {{ accommodation.numberOfRooms }} </p>
+      <p>Cijena: {{ accommodation.price }} KM</p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" (click)="openPopup(accommodation)">View More</button>
+      <button mat-raised-button color="primary" (click)="openPopup(accommodation)">Pogledaj više</button>
     </mat-card-actions>
   </mat-card>
 

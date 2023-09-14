@@ -19,7 +19,6 @@ export class ResetPasswordComponent {
 
   constructor(private activateRoute: ActivatedRoute, private resetService: ResetPasswordService, private router: Router ){}
   resetPassword() {
-    // Validate new password and confirm password
     if (this.newPassword === this.confirmPassword) {
       this.activateRoute.queryParams.subscribe(val=>{
         this.emailToReset=val['email'];

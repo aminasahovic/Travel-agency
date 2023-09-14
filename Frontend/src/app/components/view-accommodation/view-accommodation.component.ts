@@ -64,7 +64,11 @@ export class ViewAccommodationComponent implements OnInit {
   }
 
   getFirstImage(accommodation: Accommodation): string {
-    return accommodation.imageUrl || '';
+    // return accommodation.imageUrl || '';
+    if (accommodation && accommodation.imageUrl) {
+      return accommodation.imageUrl;
+    }
+    return '';
   }
 
   openPopup(accommodation: Accommodation) {

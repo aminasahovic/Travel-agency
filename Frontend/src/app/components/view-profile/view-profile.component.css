@@ -15,7 +15,7 @@
   height: 200px;
   object-fit: cover;
   border-radius: 50%;
-  filter: grayscale(100%);
+  filter: grayscale(30%);
   transition: transform 0.3s ease, filter 0.3s ease;
 }
 

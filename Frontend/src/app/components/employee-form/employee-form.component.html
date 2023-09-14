@@ -2,11 +2,19 @@
     <mat-form-field appearance="fill">
       <mat-label>Ime</mat-label>
       <input matInput formControlName="firstName">
+      <mat-error
+      *ngIf="employeeForm.controls['firstName'].dirty && employeeForm.hasError('required','firstName')">
+      *Unos imena je obavezan
+  </mat-error>
     </mat-form-field>
   
     <mat-form-field appearance="fill">
       <mat-label>Prezime</mat-label>
       <input matInput formControlName="lastName">
+      <mat-error
+      *ngIf="employeeForm.controls['lastName'].dirty && employeeForm.hasError('required','lastName')">
+      *Unos prezimena je obavezan
+  </mat-error>
     </mat-form-field>
   
     <mat-form-field appearance="fill">
@@ -19,6 +27,10 @@
     <mat-form-field appearance="fill">
       <mat-label>Šifra</mat-label>
       <input matInput formControlName="password" type="password">
+      <mat-error
+      *ngIf="employeeForm.controls['password'].dirty && employeeForm.hasError('required','password')">
+      *Unos sifre je obavezan
+  </mat-error>
     </mat-form-field>
   
     <mat-form-field appearance="fill">
@@ -33,14 +45,12 @@
   
     <mat-form-field appearance="fill">
       <mat-label>Tip</mat-label>
-      <mat-select formControlName="type">
+      <mat-select formControlName="role">
         <mat-option value="admin">Admin</mat-option>
         <mat-option value="employee">Zaposlenik</mat-option>
       </mat-select>
     </mat-form-field>
 
-    
-  
-    <button mat-raised-button color="primary" type="submit" [disabled]="!employeeForm.valid">Dodaj zaposlenika!</button>
+    <button mat-raised-button color="primary" type="submit" >Dodaj zaposlenika!</button>
   </form>
   

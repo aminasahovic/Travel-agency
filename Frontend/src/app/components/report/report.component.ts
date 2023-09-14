@@ -30,15 +30,12 @@ export class ReportComponent implements OnInit {
         this.users = data;
         this.dataSource.data = this.users.filter((e) => e.role == '');
       });
-    console.log(this.dataSource);
   }
   DownloadPdf(userId: number) {
-    console.log("kliknuo");
     this.auth.generateUserPdf(userId).subscribe((res) => {
       let blob: Blob = res.body as Blob;
       let url= window.URL.createObjectURL(blob);
       window.open(url);
     });
-    console.log("jos čekamo");
   }
 }

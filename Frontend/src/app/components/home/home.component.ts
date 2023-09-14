@@ -26,7 +26,6 @@ export class HomeComponent {
       .get<any[]>('https://localhost:7272/api/Destination')
       .subscribe((destinations) => {
         this.destinations = destinations;
-        console.log(this.destinations);
 
         this.http
           .get<any[]>('https://localhost:7272/api/DestinationImage/getall')
@@ -50,7 +49,6 @@ export class HomeComponent {
 
   findCity() {
     let searchValue = document.getElementById('search') as HTMLInputElement;
-    console.log(searchValue.value);
     fetch('https://localhost:7272/api/Accommodation/' + searchValue.value) //api for the get request
       .then((response) => response.json())
       .then((data) => (this.serverResponseData = data))

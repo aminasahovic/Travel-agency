@@ -1,5 +1,3 @@
-<app-admin-dashboard *ngIf="role==='Admin'" name={{fullName}} imgURL={{profileImg}}></app-admin-dashboard>
-<app-userbasicdashboard *ngIf="role===''" name={{fullName}} imgURL={{profileImg}}
-    userid={{id}}></app-userbasicdashboard>
-<app-employee-dashboard *ngIf="role==='Employee'" name={{fullName}} imgURL={{profileImg}}
-    userid={{id}}></app-employee-dashboard>
+<app-admin-dashboard *ngIf="role==='Admin'" [name]="fullName" [imgURL]="profileImg"></app-admin-dashboard>
+<app-userbasicdashboard *ngIf="role==='' && fullName" [name]="fullName" [imgURL]="profileImg" [userid]="id"></app-userbasicdashboard>
+<app-employee-dashboard *ngIf="role==='Employee'" [name]="fullName" [imgURL]="profileImg" [userid]="id"></app-employee-dashboard>

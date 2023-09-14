@@ -32,7 +32,6 @@ export class EmployeeDashboardComponent {
   }
   openPopup(func: any) {
     this.showPopup = true;
-    console.log(func);
     this.func = func;
   }
   onClosePopup() {

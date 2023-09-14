@@ -9,6 +9,8 @@ import { AdminOfferPageComponent } from "../admin-offer-page/admin-offer-page.co
 import { AdminChatComponent } from "../admin-chat/admin-chat.component";
 import { AccomodationComponent } from "../accomodation/accomodation.component";
 import { CounterComponent } from "../counter/counter.component";
+import { AdminUsersComponent } from "../admin-users/admin-users.component";
+import { AdminLocationComponent } from "../admin-location/admin-location.component";
 @Component({
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
@@ -28,9 +30,9 @@ export class AdminDashboardComponent {
     { icon: 'person_add', label: 'Dodaj zaposlenika', component: 'employee-add' },
     { icon: 'menu_book', label: 'Pregled ponude', component: 'offer-list' },
     { icon: 'add', label: 'Dodaj ponudu', component: 'offer-add' },
-    { icon: 'supervised_user_circle', label: 'Korisnici', component: 'user-list' },
+    { icon: 'supervised_user_circle', label: 'Korisnici', component: 'admin-users' },
     { icon: 'hotel', label: 'Smještaj', component: 'accomodation' },
-    { icon: 'add_location', label: 'Dodaj lokaciju', component: 'location-add' },
+    { icon: 'add_location', label: 'Dodaj lokaciju', component: 'admin-location' },
     { icon: 'work', label: 'Šalter', component: 'counter' },
     { icon: 'message', label: 'Chat', component: 'admin-chat' },
     { icon: 'logout', label: 'Odjavi se', component: 'logut-list' },
@@ -57,8 +59,14 @@ export class AdminDashboardComponent {
         case 'Pregled ponude':
           this.currentComponent = AdminOfferPageComponent;
         break;
+        case 'Korisnici':
+          this.currentComponent = AdminUsersComponent;
+        break;
         case 'Dodaj ponudu':
           this.currentComponent = AddDestinationComponent;
+        break;
+        case 'Dodaj lokaciju':
+          this.currentComponent = AdminLocationComponent;
         break;
         case 'Odjavi se':
           this.auth.singOut();

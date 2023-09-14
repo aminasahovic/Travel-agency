@@ -59,12 +59,10 @@ export class ArrangementFormComponentComponent implements OnInit {
     this.userStore.getRoleFromStore().subscribe((val) => {
       const roleFromToken = this.auth.getRoleFromToken();
       this.role == val;
-      console.log(this.role);
     });
     this.userStore.getRoleFromStore().subscribe((val) => {
       const roleFromToken = this.auth.getRoleFromToken();
       this.role = roleFromToken || val;
-      console.log(this.role);
     });
     this.http
       .get<any[]>('https://localhost:7272/api/Users')
@@ -164,7 +162,6 @@ export class ArrangementFormComponentComponent implements OnInit {
               arrivalTime:this.selectedArrivalTime
             };
           }
-          console.log(this.selectedArrivalTime);
           this.http
             .post(
               'https://localhost:7272/api/TravelArrangement',

@@ -25,10 +25,8 @@ export class RegisterUserComponent {
   }); 
   
   onSignUp() {
-    // https://localhost:7272/api/Users/registerbyEmployee
 
     if (this.signUpForm.valid) {
-      console.log(this.signUpForm.value);
       this.auth.signUpByEmployee(this.signUpForm.value)
       .subscribe({
         next: (r) => {

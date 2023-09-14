@@ -5,17 +5,17 @@
 }
 
 .accommodation-container {
+  padding-top: 1rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
 }
 
-/* Rest of the CSS remains the same */
 
 .accommodation-card {
   width: 300px;
-  background-color: #e8f5e9;
+  background-color: #ffffff3a;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -72,7 +72,7 @@ button:hover {
   object-fit: cover;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  filter: grayscale(100%);
+  filter: grayscale(60%);
   transition: filter 0.3s ease;
 }
 

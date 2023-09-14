@@ -68,7 +68,6 @@ export class DestinationDetailComponent {
       const roleFromToken = this.auth.getRoleFromToken();
       this.role = roleFromToken || val;
     });
-    console.log("role"+this.role);
 
     this.reservationForm = new FormGroup({
       trnsportID: new FormControl(0, Validators.required),
@@ -125,7 +124,6 @@ export class DestinationDetailComponent {
         );
     } else {
       alert('Greška');
-      console.log('Korisnik je odabrao No.');
     }
   }
 
@@ -133,7 +131,6 @@ export class DestinationDetailComponent {
     this.http
       .get<any[]>('https://localhost:7272/api/Accommodation')
       .subscribe((data) => {
-        console.log(data);
         this.accommodations = data.filter(
           (accommodation) =>
             accommodation.city &&

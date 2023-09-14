@@ -1,0 +1,18 @@
+<footer [ngClass]="{'show-footer': showFooter}">
+    <div class="footer-content">
+        <div class="social-icons">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="#"><i class="fa fa-youtube"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+        </div>
+        <ul class="footer-links">
+            <li><a href="#" (click)="onHome($event)">Početna stranica</a></li>
+            <li (click)="onOffer($event)"><a href="#">Naše ponude</a></li>
+            <li (click)="onAboutUs($event)"><a href="#" >O nama</a></li>
+            <li (click)="onLiveChat($event)"><a href="#">Kontaktirajte nas</a></li>
+        </ul>
+        <p>&copy; 2023 Turistička agencija. Sva prava zadržana.</p>
+
+    </div>
+</footer>

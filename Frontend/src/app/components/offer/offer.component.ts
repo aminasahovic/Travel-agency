@@ -51,7 +51,6 @@ export class OfferComponent {
       .get<any[]>('https://localhost:7272/api/Destination')
       .subscribe((destinations) => {
         this.destinations = destinations;
-        console.log(this.destinations);
 
         this.http
           .get<any[]>('https://localhost:7272/api/DestinationImage/getall')
@@ -91,7 +90,6 @@ export class OfferComponent {
 
   filterDestinations(nazivPonude?: string) {
     this.filteredDestinations = this.destinations;
-    console.log(this.selectedCountryID);
 
     if (nazivPonude != '') {
       this.filteredDestinations = this.filteredDestinations.filter((destination) =>

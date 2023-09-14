@@ -1,0 +1,42 @@
+<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center">
+    <mat-tab label="Dodaj državu">
+        <form [formGroup]="countryForm" (ngSubmit)="AddCountry()" class="form-container">
+            <mat-form-field appearance="outline">
+              <mat-label>Naziv države</mat-label>
+              <input matInput formControlName="name">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Kod</mat-label>
+              <input matInput formControlName="code">
+            </mat-form-field>
+          
+            <button mat-raised-button color="primary" type="submit" [disabled]="countryForm.invalid">Save</button>
+          </form>
+          
+    </mat-tab>
+    <mat-tab label="Dodaj grad">
+        <form [formGroup]="cityForm" (ngSubmit)="AddCity()" class="form-container">
+            <mat-form-field appearance="outline">
+                <mat-label>Država</mat-label>
+                <mat-select formControlName="countryId">
+                    <mat-option *ngFor="let country of countries$ | async" [value]="country.countryID">{{ country.name
+                        }}</mat-option>
+                </mat-select>
+                <!-- <mat-error *ngIf="form.get('countryID').hasError('required')">Country is required</mat-error> -->
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Naziv grada</mat-label>
+              <input matInput formControlName="cityName">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Postanski broj</mat-label>
+              <input matInput formControlName="cityPostalCode">
+            </mat-form-field>
+          
+            <button mat-raised-button color="primary" type="submit" [disabled]="cityForm.invalid">Save</button>
+          </form>
+    </mat-tab>
+</mat-tab-group>
